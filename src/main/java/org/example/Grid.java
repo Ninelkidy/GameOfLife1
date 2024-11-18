@@ -38,7 +38,7 @@ public class Grid{
                 if(board[i][j] == 0) {
                     System.out.print("⬜" + " ");
                 }else{
-                    System.out.print("\uD83D\uDFE5" + " ");
+                    System.out.print("\uD83D\uDFEA" + " ");
                 }}
             System.out.println();
         }}

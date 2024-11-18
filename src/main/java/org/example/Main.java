@@ -9,7 +9,7 @@ public class Main{
 
             System.out.println("Generation " + generations + ":");
             grid.printi();
-            Thread.sleep(250);
+            Thread.sleep(600);
             grid.makeBoard();
         }
     }
