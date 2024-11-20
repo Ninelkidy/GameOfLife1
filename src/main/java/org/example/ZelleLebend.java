@@ -1,6 +1,6 @@
 package org.example;
 
-public class ZelleLebend implements Board.Zelle {
+public class ZelleLebend implements Zelle {
 
     @Override
     public boolean leben() {

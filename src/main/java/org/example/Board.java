@@ -1,6 +1,6 @@
 package org.example;
 
-public class Board implements BoardInterface{
+public class Board implements BoardInterface, Zelle{
 
     Zelle[][] board = new Zelle[10][10];
 
@@ -49,8 +49,7 @@ public class Board implements BoardInterface{
                                 }
                             }
                         }
-
-                   new SpielRegeln().spielregeln(board, nextGen, lebendeNachbarn, x, y);
+                      new SpielRegeln().spielregeln(board, nextGen, lebendeNachbarn, x, y);
                     }
                 }
             }
@@ -58,7 +57,8 @@ public class Board implements BoardInterface{
 
         board = nextGen;
     }
-        interface Zelle {
-                boolean leben();
-        }
+    @Override
+    public boolean leben() {
+        return false;
     }
+}

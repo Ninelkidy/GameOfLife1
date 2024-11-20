@@ -2,7 +2,7 @@ package org.example;
 
 public class SpielRegeln {
 
-    public void spielregeln(Board.Zelle[][] board, Board.Zelle[][] nextGen, int lebendeNachbarn, int x, int y) {
+    public void spielregeln(Zelle[][] board, Zelle[][] nextGen, int lebendeNachbarn, int x, int y) {
 
         if(board[x][y].leben()){
             if(lebendeNachbarn < 2 || lebendeNachbarn > 3) {
@@ -16,6 +16,5 @@ public class SpielRegeln {
             }else{
                 nextGen[x][y] = new ZelleTot();
             }}
+        }
     }
-
-}
