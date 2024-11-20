@@ -47,7 +47,6 @@ public class Board implements BoardInterface, Zelle{
     }
 
 
-    @Override
     public boolean leben() {
         return false;
     }
