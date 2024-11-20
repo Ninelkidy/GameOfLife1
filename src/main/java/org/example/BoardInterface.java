@@ -1,6 +1,6 @@
 package org.example;
 
-public interface GridInterface {
+public interface BoardInterface {
 
     void makeBoard();
 

@@ -1,6 +1,6 @@
 package org.example;
 
-public class ZelleLebend implements Grid.Zelle {
+public class ZelleLebend implements Board.Zelle {
 
         public static ZelleLebend generateLebendeZelle() {
 
