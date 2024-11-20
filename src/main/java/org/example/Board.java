@@ -44,7 +44,6 @@ public class Board implements BoardInterface, Zelle{
         }
 
         board = nextGen;
-
     }
 
 
