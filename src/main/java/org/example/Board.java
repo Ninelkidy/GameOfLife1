@@ -8,13 +8,12 @@ public class Board implements BoardInterface{
 
         for (int zeile = 0; zeile < board.length; zeile++) {
             for (int spalte = 0; spalte < board[0].length; spalte++) {
-                board[zeile][spalte] = ZelleTot.generateToteZelle();
+                board[zeile][spalte] = new ZelleTot();
             }}
-        board[4][4] = ZelleLebend.generateLebendeZelle();
-        board[5][4] = ZelleLebend.generateLebendeZelle();
-        board[6][4] = ZelleLebend.generateLebendeZelle();
-        board[5][3] = ZelleLebend.generateLebendeZelle();
-
+        board[4][4] = new ZelleLebend();
+        board[5][4] = new ZelleLebend();
+        board[6][4] = new ZelleLebend();
+        board[5][3] = new ZelleLebend();
     }
 
     public void printi(){
@@ -40,33 +39,24 @@ public class Board implements BoardInterface{
 
                 for(int i = -1; i <= 1; i++) {
                     for(int j = -1; j <= 1; j++) {
-                        if(!(i == 0 && j == 0)){
-                        int nachbarX = x + i;
-                        int nachbarY = y + j;
+                        if(!(i == 0 && j == 0)) {
+                            int nachbarX = x + i;
+                            int nachbarY = y + j;
 
-                        if(nachbarX >= 0 && nachbarX < board.length && nachbarY >= 0 && nachbarY < board[x].length){
-                            if (board[nachbarX][nachbarY] != null && board[nachbarX][nachbarY].leben()) {
-                                lebendeNachbarn++;
-                            }}}}
-                }
-                if(board[x][y].leben()){
-                    if (lebendeNachbarn < 2 || lebendeNachbarn > 3) {
-                        nextGen[x][y] = ZelleTot.generateToteZelle();
-                    } else {
-                        nextGen[x][y] = ZelleLebend.generateLebendeZelle();
-                    }
-                }
-                else {
-                    if (lebendeNachbarn == 3) {
-                        nextGen[x][y] = ZelleLebend.generateLebendeZelle();
-                    } else {
-                        nextGen[x][y] = ZelleTot.generateToteZelle();
+                            if (nachbarX >= 0 && nachbarX < board.length && nachbarY >= 0 && nachbarY < board[x].length) {
+                                if (board[nachbarX][nachbarY] != null && board[nachbarX][nachbarY].leben()) {
+                                    lebendeNachbarn++;
+                                }
+                            }
+                        }
+
+                   new SpielRegeln().spielregeln(board, nextGen, lebendeNachbarn, x, y);
                     }
                 }
             }
         }
 
-                board = nextGen;
+        board = nextGen;
     }
         interface Zelle {
                 boolean leben();
