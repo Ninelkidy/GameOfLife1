@@ -4,5 +4,4 @@ public interface BoardInterface {
 
     void makeBoard();
 
-    void printi();
 }

@@ -16,18 +16,6 @@ public class Board implements BoardInterface, Zelle{
         board[5][3] = new ZelleLebend();
     }
 
-    public void printi(){
-        for(int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board[i].length; j++) {
-                if(board[i][j] != null && board[i][j].leben()) {
-                    System.out.print("\uD83D\uDFE5" + " ");
-                }else{
-                    System.out.print("⬜" + " ");
-                }}
-            System.out.println();
-        }
-        System.out.println();
-    }
 
     public void makeBoard(){
         Zelle[][] nextGen = new Zelle[board.length][board[0].length];
@@ -56,9 +44,26 @@ public class Board implements BoardInterface, Zelle{
         }
 
         board = nextGen;
+
     }
+
+
     @Override
     public boolean leben() {
         return false;
+    }
+    @Override
+    public String toString() {
+        String ausgabe = "";
+        for(int i = 0; i < board.length; i++) {
+            for(int j = 0; j < board[i].length; j++) {
+                if(board[i][j] != null && board[i][j].leben()) {
+                   ausgabe += ("\uD83D\uDFE5" + " ");
+                }else{
+                    ausgabe += ("⬜" + " ");
+                }}
+            ausgabe += "\n";
+        }
+       return ausgabe;
     }
 }
