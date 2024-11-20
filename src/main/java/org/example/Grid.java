@@ -1,83 +1,69 @@
 package org.example;
 
-public class Grid{
+public class Grid implements GridInterface{
 
-    public int board[][];
+    Zelle[][] board = new Zelle[10][10];
 
     public Grid(){
-        board = new int[10][10];
-        board[2][4] = 1;
-        board[3][4] = 1;
-        board[6][8] = 1;
-        board[1][4] = 1;
-        board[2][9] = 1;
-        board[3][9] = 1;
-        board[3][8] = 1;
-        board[2][8] = 1;
-        board[5][2] = 1;
-        board[5][4] = 1;
-        board[6][2] = 1;
-        board[2][2] = 1;
-        board[3][2] = 1;
-        board[3][3] = 1;
-        board[8][8] = 1;
-        board[8][9] = 1;
-        board[9][8] = 1;
-        board[6][7] = 1;
-        board[7][6] = 1;
-        board[7][8] = 1;
-        board[6][6] = 1;
-        board[0][0] = 1;
-        board[0][1] = 1;
-    }
 
+        for (int zeile = 0; zeile < board.length; zeile++) {
+            for (int spalte = 0; spalte < board.length; spalte++) {
+                board[zeile][spalte] = ZelleTot.generateToteZelle();
+            }}
+        board[4][4] = ZelleLebend.generateLebendeZelle();
+        board[5][4] = ZelleLebend.generateLebendeZelle();
+        board[6][4] = ZelleLebend.generateLebendeZelle();
+        board[5][3] = ZelleLebend.generateLebendeZelle();
+
+    }
 
     public void printi(){
         for(int i = 0; i < board.length; i++) {
             for(int j = 0; j < board[i].length; j++) {
-                if(board[i][j] == 0) {
-                    System.out.print("⬜" + " ");
+                if(board[i][j] != null && board[i][j].leben()) {
+                    System.out.print("\uD83D\uDFE5" + " ");
                 }else{
-                    System.out.print("\uD83D\uDFEA" + " ");
+                    System.out.print("⬜" + " ");
                 }}
             System.out.println();
         }}
 
-
     public void makeBoard(){
-        int[][] nextGen = new int[board.length][board[0].length];
+        Zelle[][] nextGen = new Zelle[board.length][board[0].length];
+
 
         for(int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
                 int lebendeNachbarn = 0;
                 for(int i = -1; i <= 1; i++) {
                     for(int j = -1; j <= 1; j++) {
-                        if(i == 0 && j == 0) {
-                            continue;
-                        }
+                        if(!(i == 0 && j == 0)){
                         int nachbarX = x + i;
                         int nachbarY = y + j;
-                        if(nachbarX >= 0 && nachbarX < board.length && nachbarY >= 0 && nachbarY < board[x].length) {
-                            if (board[nachbarX][nachbarY] == 1) {
+                        if(nachbarX >= 0 && nachbarX < board.length && nachbarY >= 0 && nachbarY < board[x].length){
+                            if (board[nachbarX][nachbarY] != null && board[nachbarX][nachbarY].leben()) {
                                 lebendeNachbarn++;
                             }}}}
+                }
 
-                if(lebendeNachbarn < 2 && board[x][y] == 1){
-                    nextGen[x][y] = 0;
+                if(lebendeNachbarn < 2){
+                    nextGen[x][y] = new ZelleTot();
                 }
-                if((lebendeNachbarn == 2 || lebendeNachbarn == 3) && board[x][y] == 1){
-                    nextGen[x][y] = 1;
+                if((lebendeNachbarn == 2 || lebendeNachbarn == 3)){
+                    nextGen[x][y] = new ZelleLebend();
                 }
-                if(lebendeNachbarn > 3 && board[x][y] == 1){
-                    nextGen[x][y] = 0;
+
+                if(lebendeNachbarn > 3){
+                    nextGen[x][y] = new ZelleTot();
                 }
-                if(lebendeNachbarn == 3 && board[x][y] == 0){
-                    nextGen[x][y] = 1;
+
+                if(lebendeNachbarn == 3){
+                    nextGen[x][y] = new ZelleLebend();
                 }}}
 
-        // Updati das Boardi
-        board = nextGen;
+                board = nextGen;
     }
-
-
-}
+        interface Zelle {
+                boolean leben();
+        }
+    }
