@@ -2,13 +2,12 @@ package org.example;
 
 import java.util.Random;
 
-public class Board implements BoardInterface, Zelle {
+public class Board implements Zelle {
     Random random = new Random();
     Zelle[][] board = new Zelle[11][11];
 
-
     public Board() {
-        boolean randomize = true;
+        boolean randomize = false;
 
         for (int zeile = 0; zeile < board.length; zeile++) {
             for (int spalte = 0; spalte < board[0].length; spalte++) {
@@ -33,7 +32,6 @@ public class Board implements BoardInterface, Zelle {
         }
 
     }
-
 
     public void makeBoard() {
         Zelle[][] nextGen = new Zelle[board.length][board[0].length];
@@ -63,7 +61,6 @@ public class Board implements BoardInterface, Zelle {
 
         board = nextGen;
     }
-
 
     public boolean leben() {
         return false;
