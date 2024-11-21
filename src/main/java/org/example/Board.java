@@ -7,7 +7,7 @@ public class Board implements Zelle {
     Zelle[][] board = new Zelle[11][11];
 
     public Board() {
-        boolean randomize = false;
+        boolean randomize = true;
 
         for (int zeile = 0; zeile < board.length; zeile++) {
             for (int spalte = 0; spalte < board[0].length; spalte++) {
@@ -16,21 +16,17 @@ public class Board implements Zelle {
         }
 
         if (randomize) {
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            int anzahlRandoms = 20;
+            for (int i = 0; i <= anzahlRandoms; i++){
+                board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            }
+
         } else {
             board[5][5] = new ZelleLebend();
             board[4][5] = new ZelleLebend();
             board[5][4] = new ZelleLebend();
             board[5][6] = new ZelleLebend();
         }
-
     }
 
     public void makeBoard() {
@@ -58,7 +54,6 @@ public class Board implements Zelle {
                 }
             }
         }
-
         board = nextGen;
     }
 

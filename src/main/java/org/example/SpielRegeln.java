@@ -7,7 +7,6 @@ public class SpielRegeln {
         this.board = board;
     }
 
-
     public void regeln(Zelle[][] nextGen, int lebendeNachbarn, int x, int y) {
 
         if(board[x][y].leben()){
@@ -21,7 +20,7 @@ public class SpielRegeln {
                 nextGen[x][y] = new ZelleLebend();
             }else{
                 nextGen[x][y] = new ZelleTot();
-
-            }}
+            }
         }
     }
+}
