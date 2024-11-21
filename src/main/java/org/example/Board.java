@@ -1,21 +1,37 @@
 package org.example;
 
-public class Board implements BoardInterface, Zelle {
+import java.util.Random;
 
-    Zelle[][] board = new Zelle[10][10];
+public class Board implements BoardInterface, Zelle {
+    Random random = new Random();
+    Zelle[][] board = new Zelle[11][11];
 
 
     public Board() {
+        boolean randomize = true;
 
         for (int zeile = 0; zeile < board.length; zeile++) {
             for (int spalte = 0; spalte < board[0].length; spalte++) {
                 board[zeile][spalte] = new ZelleTot();
             }
         }
-        board[4][4] = new ZelleLebend();
-        board[5][4] = new ZelleLebend();
-        board[6][4] = new ZelleLebend();
-        board[5][3] = new ZelleLebend();
+
+        if (randomize) {
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+        } else {
+            board[5][5] = new ZelleLebend();
+            board[4][5] = new ZelleLebend();
+            board[5][4] = new ZelleLebend();
+            board[5][6] = new ZelleLebend();
+        }
+
     }
 
 
