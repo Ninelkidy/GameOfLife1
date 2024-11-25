@@ -5,9 +5,12 @@ import java.util.Random;
 public class Board implements Zelle {
     Random random = new Random();
     Zelle[][] board = new Zelle[11][11];
+    boolean randomize;
+    int chance;
 
-    public Board() {
-        boolean randomize = true;
+    public Board(boolean randomize, int chance) {
+        this.randomize = randomize;
+        this.chance = chance;
 
         for (int zeile = 0; zeile < board.length; zeile++) {
             for (int spalte = 0; spalte < board[0].length; spalte++) {
@@ -16,18 +19,33 @@ public class Board implements Zelle {
         }
 
         if (randomize) {
-            int anzahlRandoms = 20;
-            for (int i = 0; i <= anzahlRandoms; i++){
-                board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            for (int zeile = 0; zeile < board.length; zeile++) {
+                for (int spalte = 0; spalte < board[0].length; spalte++) {
+                    int randomZahl = random.nextInt(100);
+                    if (randomZahl <= chance) {
+                        board[zeile][spalte] = new ZelleLebend();
+                    } else {
+                        board[zeile][spalte] = new ZelleTot();
+                    }
+                }
             }
-
+            /*            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
+            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();*/
         } else {
             board[5][5] = new ZelleLebend();
             board[4][5] = new ZelleLebend();
             board[5][4] = new ZelleLebend();
             board[5][6] = new ZelleLebend();
         }
+
     }
+
 
     public void makeBoard() {
         Zelle[][] nextGen = new Zelle[board.length][board[0].length];
@@ -54,8 +72,10 @@ public class Board implements Zelle {
                 }
             }
         }
+
         board = nextGen;
     }
+
 
     public boolean leben() {
         return false;
