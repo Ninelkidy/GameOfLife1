@@ -45,7 +45,6 @@ public class Board implements Zelle {
                 } else {
                     break;
                 }
-
             }
         }
         if (anzahlRandomZellen > anzahlLebendeZellen) {
