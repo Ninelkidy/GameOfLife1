@@ -3,8 +3,8 @@ package org.example;
 public class GameOfLifeStart {
     Board grid;
 
-    public GameOfLifeStart(boolean randomize, int chance) {
-        this.grid = new Board(randomize, chance);
+    public GameOfLifeStart(boolean randomize, int anzahlRandomZellen) {
+        this.grid = new Board(randomize, anzahlRandomZellen);
     }
 
 

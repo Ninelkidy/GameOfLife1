@@ -6,11 +6,11 @@ public class Board implements Zelle {
     Random random = new Random();
     Zelle[][] board = new Zelle[11][11];
     boolean randomize;
-    int chance;
+    int anzahlRandomZellen;
 
-    public Board(boolean randomize, int chance) {
+    public Board(boolean randomize, int anzahlRandomZellen) {
         this.randomize = randomize;
-        this.chance = chance;
+        this.anzahlRandomZellen = anzahlRandomZellen;
 
         for (int zeile = 0; zeile < board.length; zeile++) {
             for (int spalte = 0; spalte < board[0].length; spalte++) {
@@ -19,24 +19,7 @@ public class Board implements Zelle {
         }
 
         if (randomize) {
-            for (int zeile = 0; zeile < board.length; zeile++) {
-                for (int spalte = 0; spalte < board[0].length; spalte++) {
-                    int randomZahl = random.nextInt(100);
-                    if (randomZahl <= chance) {
-                        board[zeile][spalte] = new ZelleLebend();
-                    } else {
-                        board[zeile][spalte] = new ZelleTot();
-                    }
-                }
-            }
-            /*            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();
-            board[random.nextInt(11)][random.nextInt(11)] = new ZelleLebend();*/
+            randomize(anzahlRandomZellen);
         } else {
             board[5][5] = new ZelleLebend();
             board[4][5] = new ZelleLebend();
@@ -46,6 +29,29 @@ public class Board implements Zelle {
 
     }
 
+    public void randomize(int anzahlRandomZellen) {
+        int anzahlLebendeZellen = 0;
+        for (int zeile = 0; zeile < board.length; zeile++) {
+            for (int spalte = 0; spalte < board[0].length; spalte++) {
+                int randomZahl = random.nextInt(100);
+                if (anzahlRandomZellen > anzahlLebendeZellen) {
+                    if (randomZahl <= 2) {
+                        board[zeile][spalte] = new ZelleLebend();
+                        anzahlLebendeZellen++;
+                        //System.out.println(anzahlLebendeZellen);
+                    } else {
+                        board[zeile][spalte] = new ZelleTot();
+                    }
+                } else {
+                    break;
+                }
+
+            }
+        }
+        if (anzahlRandomZellen > anzahlLebendeZellen) {
+            randomize(anzahlRandomZellen);
+        }
+    }
 
     public void makeBoard() {
         Zelle[][] nextGen = new Zelle[board.length][board[0].length];
