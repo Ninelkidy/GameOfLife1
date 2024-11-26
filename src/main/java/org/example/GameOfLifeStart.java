@@ -7,7 +7,6 @@ public class GameOfLifeStart {
         this.grid = new Board(randomize, anzahlRandomZellen);
     }
 
-
     public void start() throws InterruptedException {
         for (int generations = 1; generations <= 20; generations++) {
             System.out.println(grid);
@@ -16,5 +15,4 @@ public class GameOfLifeStart {
             grid.makeBoard();
         }
     }
-
 }

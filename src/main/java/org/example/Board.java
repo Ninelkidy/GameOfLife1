@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Random;
 
-public class Board implements Zelle {
+public class Board {
     Random random = new Random();
     Zelle[][] board = new Zelle[11][11];
     boolean randomize;
@@ -34,27 +34,24 @@ public class Board implements Zelle {
         for (int zeile = 0; zeile < board.length; zeile++) {
             for (int spalte = 0; spalte < board[0].length; spalte++) {
                 int randomZahl = random.nextInt(100);
-                if (anzahlRandomZellen > anzahlLebendeZellen) {
-                    if (randomZahl <= 2) {
-                        board[zeile][spalte] = new ZelleLebend();
-                        anzahlLebendeZellen++;
-                        System.out.println(anzahlLebendeZellen);
-                    } else {
-                        board[zeile][spalte] = new ZelleTot();
-                    }
+
+                if (randomZahl <= (anzahlRandomZellen * 0.75)) {
+                    board[zeile][spalte] = new ZelleLebend();
+                    anzahlLebendeZellen++;
+                    System.out.println(anzahlLebendeZellen);
                 } else {
-                    //break;
+                    board[zeile][spalte] = new ZelleTot();
                 }
             }
         }
-        if (anzahlRandomZellen > anzahlLebendeZellen) {
+        if (anzahlRandomZellen != anzahlLebendeZellen) {
             randomize(anzahlRandomZellen);
         }
     }
 
     public void makeBoard() {
         Zelle[][] nextGen = new Zelle[board.length][board[0].length];
-        SpielRegeln spielRegeln = new SpielRegeln(board);
+        SpielRegeln spielRegeln = new SpielRegeln();
 
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
@@ -72,18 +69,19 @@ public class Board implements Zelle {
                                 }
                             }
                         }
-                        spielRegeln.regeln(nextGen, lebendeNachbarn, x, y);
+                        boolean lebt = spielRegeln.regeln(board[x][y].leben(), lebendeNachbarn);
+                        if (lebt) {
+                            nextGen[x][y] = new ZelleLebend();
+                        } else {
+                            nextGen[x][y] = new ZelleTot();
+                        }
+
                     }
                 }
             }
         }
 
         board = nextGen;
-    }
-
-
-    public boolean leben() {
-        return false;
     }
 
     @Override

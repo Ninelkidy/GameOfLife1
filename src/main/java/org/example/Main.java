@@ -2,6 +2,6 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        new GameOfLifeStart(true, 8).start();
+        new GameOfLifeStart(false, 20).start();
     }
 }
