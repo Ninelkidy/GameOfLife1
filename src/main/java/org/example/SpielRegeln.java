@@ -6,20 +6,18 @@ public class SpielRegeln {
 
     }
 
-    public boolean regeln(boolean lebt, int lebendeNachbarn) {
-        if (lebt) {
-            // Live cell survives if it has 2 or 3 live neighbors, otherwise dies
+    public Zelle regeln(Zelle zelle, int lebendeNachbarn) {
+        if (zelle.leben()) {
             if (lebendeNachbarn == 2 || lebendeNachbarn == 3) {
-                return true;
+                return new ZelleLebend();
             } else {
-                return false;
+                return new ZelleTot();
             }
         } else {
-            // Dead cell becomes alive only if it has exactly 3 live neighbors
             if (lebendeNachbarn == 3) {
-                return true;
+                return new ZelleLebend();
             } else {
-                return false;
+                return new ZelleTot();
             }
         }
     }

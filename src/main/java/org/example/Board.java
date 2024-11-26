@@ -69,12 +69,8 @@ public class Board {
                                 }
                             }
                         }
-                        boolean lebt = spielRegeln.regeln(board[x][y].leben(), lebendeNachbarn);
-                        if (lebt) {
-                            nextGen[x][y] = new ZelleLebend();
-                        } else {
-                            nextGen[x][y] = new ZelleTot();
-                        }
+                        nextGen[x][y] = spielRegeln.regeln(board[x][y], lebendeNachbarn);
+
 
                     }
                 }
