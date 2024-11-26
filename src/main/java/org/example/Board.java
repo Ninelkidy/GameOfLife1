@@ -38,12 +38,12 @@ public class Board implements Zelle {
                     if (randomZahl <= 2) {
                         board[zeile][spalte] = new ZelleLebend();
                         anzahlLebendeZellen++;
-                        //System.out.println(anzahlLebendeZellen);
+                        System.out.println(anzahlLebendeZellen);
                     } else {
                         board[zeile][spalte] = new ZelleTot();
                     }
                 } else {
-                    break;
+                    //break;
                 }
             }
         }
