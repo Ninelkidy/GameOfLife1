@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Board {
     Random random = new Random();
-    Zelle[][] board = new Zelle[11][11];
+    public Zelle[][] board = new Zelle[11][11];
     boolean randomize;
     int anzahlRandomZellen;
 

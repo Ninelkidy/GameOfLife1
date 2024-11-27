@@ -2,10 +2,6 @@ package org.example;
 
 public class SpielRegeln {
 
-    public SpielRegeln() {
-
-    }
-
     public Zelle regeln(Zelle zelle, int lebendeNachbarn) {
         if (zelle.leben()) {
             if (lebendeNachbarn == 2 || lebendeNachbarn == 3) {
