@@ -27,6 +27,7 @@ public class Tests {
         SpielRegeln regeln = new SpielRegeln();
         Zelle lebendeZelle = new ZelleLebend();
 
+
         Zelle ergebnis = regeln.regeln(lebendeZelle, 1);
         assertFalse(ergebnis.leben(), "Muss sterben");
 
